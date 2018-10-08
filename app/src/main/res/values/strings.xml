@@ -1,0 +1,18 @@
+<resources>
+    <string name="app_name">Iteso Store</string>
+    <string name="action_settings">Settings</string>
+    <string name="section_format">Hello World from section: %1$d</string>
+    <string name="section_1">Technology</string>
+    <string name="section_2">Home</string>
+    <string name="section_3">Electronics</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <string name="Save">Save</string>
+    <string name="Cancel">Cancel</string>
+    <string name="Edit_title">Introduce title ...</string>
+    <string name="Edit_store">Introduce store ...</string>
+    <string name="Edit_location">Introduce location ...</string>
+    <string name="Edit_phone">Introduce phone ...</string>
+</resources>

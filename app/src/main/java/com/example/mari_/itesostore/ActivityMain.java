@@ -1,5 +1,7 @@
 package com.example.mari_.itesostore;
 
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -39,27 +41,18 @@ public class ActivityMain extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        TabLayout tabLayout = findViewById(R.id.tabs);
 
         setSupportActionBar(toolbar);
         // Create the adapter that will return a fragment for each of the three
         // primary sections of the activity.
-        mSectionsPagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager());
+        SectionsPagerAdapter mSectionsPagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager());
 
         // Set up the ViewPager with the sections adapter.
-        mViewPager = (ViewPager) findViewById(R.id.container);
+        ViewPager mViewPager = findViewById(R.id.container);
         mViewPager.setAdapter(mSectionsPagerAdapter);
         tabLayout.setupWithViewPager(mViewPager);
-        /*FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });*/
-
     }
 
 
@@ -78,11 +71,23 @@ public class ActivityMain extends AppCompatActivity {
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
+        if (id == R.id.action_privacypolicy) {
+            Intent intent = new Intent(ActivityMain.this, ActivityPrivacyPolicy.class);
+            startActivity(intent);
         }
-
+        if (id == R.id.action_logout){
+            logOut();
+            Intent intent = new Intent(ActivityMain.this, ActivityLogin.class);
+            startActivity(intent);
+            finish();
+        }
         return super.onOptionsItemSelected(item);
+    }
+
+    private void logOut(){
+        SharedPreferences sharedPreferences = getSharedPreferences(
+                ActivitySplashScreen.MY_PREFERENCES, MODE_PRIVATE);
+        sharedPreferences.edit().clear().apply();
     }
 
     /**
@@ -133,7 +138,5 @@ public class ActivityMain extends AppCompatActivity {
             }
             return null;
         }
-
-
     }
 }
